@@ -1,6 +1,11 @@
 # base image
 FROM python:3.6.4-alpine
 
+# install depdendencies for postgres
+RUN apk update && \
+    apk add --virtual build-deps gcc python-dev musl-dev && \
+    apk add postgresql-dev
+
 # set working directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

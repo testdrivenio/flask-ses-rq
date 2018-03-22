@@ -15,6 +15,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     confirmed = db.Column(db.Boolean, default=False, nullable=False)
+    email_sent = db.Column(db.Boolean, default=False, nullable=False)
 
     def __init__(self, email):
         self.email = email

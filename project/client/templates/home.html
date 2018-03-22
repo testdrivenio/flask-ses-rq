@@ -31,15 +31,17 @@
           <tr>
             <th>ID</th>
             <th>Email</th>
-            <th>Confirmed</th>
+            <th>Confirm Email Sent?</th>
+            <th>Confirmed?</th>
           </tr>
         </thead>
         <tbody>
           {% for user in users %}
             <tr>
               <td>{{user.id}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.confirmed}}</td>
+              <td data-user="{{user.id}}">{{user.email}}</td>
+              <td data-user="{{user.id}}" data-field="sent">{{user.email_sent}}</td>
+              <td data-user="{{user.id}}" data-field="confirm">{{user.confirmed}}</td>
             </tr>
           {% endfor %}
         </tbody>

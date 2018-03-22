@@ -29,10 +29,17 @@ class TestMainBlueprint(BaseTestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'Thank you for registering.', response.data)
             self.assertIn(b'<td>1</td>', response.data)
-            self.assertIn(b'<td>test@tester.com</td>', response.data)
-            self.assertIn(b'<td>False</td>', response.data)
-            self.assertNotIn(
-                b'Sorry. That email already exists.', response.data)
+            self.assertIn(
+                b'<td data-user="1">test@tester.com</td>', response.data
+            )
+            self.assertIn(
+                b'<td data-user="1" data-field="sent">False</td>',
+                response.data
+            )
+            self.assertIn(
+                b'<td data-user="1" data-field="confirm">False</td>',
+                response.data
+            )
 
     def test_user_registration_invalid_email(self):
         # Ensure registration behaves correctly with an invalid email.
@@ -45,13 +52,9 @@ class TestMainBlueprint(BaseTestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn(
                 b'<p class="help-block">Invalid email address.</p>',
-                response.data)
-            self.assertNotIn(b'Thank you for registering.', response.data)
-            self.assertNotIn(
-                b'Sorry. That email already exists.', response.data)
+                response.data
+            )
             self.assertNotIn(b'<td>1</td>', response.data)
-            self.assertNotIn(b'<td>notvalid</td>', response.data)
-            self.assertNotIn(b'<td>False</td>', response.data)
 
     def test_user_registration_duplicate_email(self):
         # Ensure registration behaves correctly with a duplicate email.
@@ -65,9 +68,10 @@ class TestMainBlueprint(BaseTestCase):
             )
             self.assertEqual(response.status_code, 200)
             self.assertIn(
-                b'Sorry. That email already exists.', response.data)
+                b'Sorry. That email already exists.', response.data
+            )
             self.assertNotIn(b'<td>2</td>', response.data)
-            self.assertNotIn(b'Thank you for registering.', response.data)
+
 
 if __name__ == '__main__':
     unittest.main()

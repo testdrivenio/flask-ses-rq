@@ -12,19 +12,21 @@ services:
     volumes:
       - .:/usr/src/app
     environment:
-      - SECRET_KEY=my_precious
       - FLASK_DEBUG=1
       - APP_SETTINGS=project.server.config.DevelopmentConfig
-
-  worker:
-    image: users
-    command: python manage.py run_worker
-    volumes:
-      - .:/usr/src/app
-    environment:
-      - APP_SETTINGS=project.server.config.DevelopmentConfig
+      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
+      - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
+      - SECRET_KEY=my_precious
     depends_on:
-      - redis
+      - users-db
 
-  redis:
-    image: redis:3.2.11
+  users-db:
+    container_name: users-db
+    build:
+      context: ./project/db
+      dockerfile: Dockerfile
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
