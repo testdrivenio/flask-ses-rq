@@ -1,0 +1,50 @@
+{% extends '_base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+
+  <header class="content-header">
+    <h1>Flask + Redis Queue + Amazon SES</h1>
+    <hr><br>
+  </header>
+
+  <br>
+
+  <form class="form" role="form" method="post" action="">
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+    {{ wtf.form_errors(form, hiddens="only") }}
+
+    <div class="col-lg-4 col-sm-4">
+      {{ wtf.form_field(form.email) }}
+      <button class="btn btn-primary" type="submit">Register!</button>
+    </div>
+  </form>
+
+  <br><br>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Registered Users</h3>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Confirmed</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td>{{user.id}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.confirmed}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

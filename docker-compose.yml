@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+
+  users:
+    build: .
+    image: users
+    container_name: users
+    ports:
+      - '5001:5000'
+    command: python manage.py run -h 0.0.0.0
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - SECRET_KEY=my_precious
+      - FLASK_DEBUG=1
+      - APP_SETTINGS=project.server.config.DevelopmentConfig
+
+  worker:
+    image: users
+    command: python manage.py run_worker
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - APP_SETTINGS=project.server.config.DevelopmentConfig
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:3.2.11
