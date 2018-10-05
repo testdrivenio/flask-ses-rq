@@ -1,5 +1,5 @@
 # base image
-FROM python:3.6.4-alpine
+FROM python:3.7.0-alpine
 
 # install depdendencies for postgres
 RUN apk update && \

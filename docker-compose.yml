@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.7'
 
 services:
 
@@ -7,7 +7,7 @@ services:
     image: users
     container_name: users
     ports:
-      - '5001:5000'
+      - 5003:5000
     command: python manage.py run -h 0.0.0.0
     volumes:
       - .:/usr/src/app
@@ -26,8 +26,8 @@ services:
     build:
       context: ./project/db
       dockerfile: Dockerfile
-    ports:
-      - 5435:5432
+    expose:
+      - 5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
