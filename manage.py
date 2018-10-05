@@ -16,20 +16,20 @@ app = create_app()
 cli = FlaskGroup(create_app=create_app)
 
 
-@cli.command()
+@cli.command('create_db')
 def create_db():
     db.drop_all()
     db.create_all()
     db.session.commit()
 
 
-@cli.command()
+@cli.command('drop_db')
 def drop_db():
     """Drops the db tables."""
     db.drop_all()
 
 
-@cli.command()
+@cli.command('test')
 def test():
     """Runs the unit tests without test coverage."""
     tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
@@ -40,7 +40,7 @@ def test():
         sys.exit(1)
 
 
-@cli.command()
+@cli.command('run_worker')
 def run_worker():
     redis_url = app.config['REDIS_URL']
     redis_connection = redis.from_url(redis_url)
