@@ -19,10 +19,11 @@ Check out the [post](https://testdriven.io/sending-confirmation-emails-with-flas
     - AWS_SECRET_ACCESS_KEY=your_secret_access_key
     ```
 
-1. Spin up the containers:
+1. Spin up the containers and update the database:
 
     ```sh
     $ docker-compose up -d
+    $ docker-compose run users python manage.py create_db
     ```
 
 1. Open your browser to http://localhost:5001 to view the app.
