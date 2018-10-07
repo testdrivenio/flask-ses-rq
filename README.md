@@ -26,4 +26,4 @@ Check out the [post](https://testdriven.io/sending-confirmation-emails-with-flas
     $ docker-compose run users python manage.py create_db
     ```
 
-1. Open your browser to http://localhost:5001 to view the app.
+1. Open your browser to http://localhost:5003 to view the app.
