@@ -13,7 +13,6 @@ from project.server.main.forms import RegisterForm
 from project.server.main.tasks import send_email
 from project.server.main.utils import encode_token, generate_url, decode_token
 
-
 main_blueprint = Blueprint('main', __name__,)
 
 
