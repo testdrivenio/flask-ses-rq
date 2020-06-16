@@ -13,7 +13,7 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    email = db.Column(db.String(255), unique=True, nullable=False)
+    email = db.Column(db.String(255), unique=False, nullable=False)
     confirmed = db.Column(db.Boolean, default=False, nullable=False)
     email_sent = db.Column(db.Boolean, default=False, nullable=False)
 
