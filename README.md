@@ -22,7 +22,7 @@ Check out the [post](https://testdriven.io/sending-confirmation-emails-with-flas
 1. Spin up the containers and update the database:
 
     ```sh
-    $ docker-compose up -d
+    $ docker-compose up -d --build
     $ docker-compose run users python manage.py create_db
     ```
 
