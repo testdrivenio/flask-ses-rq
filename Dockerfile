@@ -1,9 +1,9 @@
 # base image
-FROM python:3.7.0-alpine
+FROM python:3.8.3-alpine
 
 # install depdendencies for postgres
 RUN apk update && \
-    apk add --virtual build-deps gcc python-dev musl-dev && \
+    apk add --virtual build-deps gcc python3-dev musl-dev && \
     apk add postgresql-dev
 
 # set working directory

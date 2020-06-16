@@ -5,8 +5,8 @@ import sys
 import unittest
 
 import redis
-from rq import Connection, Worker
 from flask.cli import FlaskGroup
+from rq import Connection, Worker
 
 from project.server import create_app, db
 from project.server.models import User

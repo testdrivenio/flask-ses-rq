@@ -1,10 +1,10 @@
 # project/server/main/tasks.py
 
-
 import os
 import time
 
 import boto3
+
 from project.server import db
 from project.server.models import User
 
