@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-{% import "bootstrap/wtf.html" as wtf %}
+{% from 'bootstrap/form.html' import render_form %}
 {% block content %}
 
   <header class="content-header">
@@ -9,16 +9,9 @@
 
   <br>
 
-  <form class="form" role="form" method="post" action="">
-    {{ form.csrf_token }}
-    {{ form.hidden_tag() }}
-    {{ wtf.form_errors(form, hiddens="only") }}
-
-    <div class="col-lg-4 col-sm-4">
-      {{ wtf.form_field(form.email) }}
-      <button class="btn btn-primary" type="submit">Register!</button>
-    </div>
-  </form>
+  <div class="col-sm-6">
+    {{ render_form(form, button_style='primary') }}
+  </div>
 
   <br><br>
 
