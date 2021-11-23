@@ -40,10 +40,10 @@ services:
     environment:
       - FLASK_DEBUG=1
       - APP_SETTINGS=project.server.config.DevelopmentConfig
-      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
-      - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
+      - DATABASE_URL=postgresql://postgres:postgres@users-db:5432/users_dev
+      - DATABASE_TEST_URL=postgresql://postgres:postgres@users-db:5432/users_test
       - SECRET_KEY=my_precious
-      - SES_REGION=us-east-1
+      - SES_REGION=us-east-2
       - SES_EMAIL_SOURCE=your_email
       - AWS_ACCESS_KEY_ID=your_access_key_id
       - AWS_SECRET_ACCESS_KEY=your_secret_access_key
@@ -52,4 +52,4 @@ services:
       - redis
 
   redis:
-    image: redis:6.0.5-alpine
+    image: redis:6-alpine
