@@ -2,9 +2,9 @@
 
 
 import redis
-from rq import Queue, Connection
 from flask import render_template, Blueprint, url_for, \
     redirect, flash, request, current_app
+from rq import Queue, Connection
 from sqlalchemy.exc import IntegrityError
 
 from project.server import db

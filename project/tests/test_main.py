@@ -51,7 +51,7 @@ class TestMainBlueprint(BaseTestCase):
             )
             self.assertEqual(response.status_code, 200)
             self.assertIn(
-                b'<p class="help-block">Invalid email address.</p>',
+                b'Invalid email address.',
                 response.data
             )
             self.assertNotIn(b'<td>1</td>', response.data)

@@ -13,7 +13,7 @@ Check out the [post](https://testdriven.io/sending-confirmation-emails-with-flas
 1. [Sign up](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sign-up-for-aws.html) for AWS (if necessary), [verify](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html) an email for [SES](https://aws.amazon.com/ses/), and update the following environment variables for the `worker` service in *docker-compose.yml*:
 
     ```yaml
-    - SES_REGION=us-east-1
+    - SES_REGION=us-east-2
     - SES_EMAIL_SOURCE=your_email
     - AWS_ACCESS_KEY_ID=your_access_key_id
     - AWS_SECRET_ACCESS_KEY=your_secret_access_key
