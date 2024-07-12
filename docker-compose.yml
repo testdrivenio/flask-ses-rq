@@ -17,6 +17,7 @@ services:
       - SECRET_KEY=my_precious
     depends_on:
       - users-db
+      - redis
 
   users-db:
     container_name: users-db
@@ -28,3 +29,25 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+  worker:
+    image: users
+    command: python manage.py run_worker
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - FLASK_DEBUG=1
+      - APP_SETTINGS=project.server.config.DevelopmentConfig
+      - DATABASE_URL=postgresql://postgres:postgres@users-db:5432/users_dev
+      - DATABASE_TEST_URL=postgresql://postgres:postgres@users-db:5432/users_test
+      - SECRET_KEY=my_precious
+      - SES_REGION=us-east-2
+      - SES_EMAIL_SOURCE=your_email
+      - AWS_ACCESS_KEY_ID=your_access_key_id
+      - AWS_SECRET_ACCESS_KEY=your_secret_access_key
+    depends_on:
+      - users-db
+      - redis
+
+  redis:
+    image: redis:7.2.5-alpine
